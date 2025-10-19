@@ -149,10 +149,10 @@ body {
 
 /* ===== HOME ===== */
 .home {
-  min-height: 100vh;
+  min-height: 70vh;
   display: flex;
   justify-content: center;
-  padding: 100px 80px 60px;
+  padding: 4rem 0 ;
 }
 
 .home-grid {
