@@ -1,29 +1,31 @@
 /*  ===== Palette principale (clair) ===== */
 :root {
-  --rose: #ff9acb;
-  --rose-dark: #ff6fa8;
-  --violet: #caa5f5;
-  --lilas: #eacff8;
-  --text: #2e174a;
+  --rose: #ff7da8;         /* rose moins saturé */
+  --rose-dark: #e76a93;    /* ton chaud mais plus doux */
+  --violet: #b7a0e8;       /* lavande plus grisée */
+  --lilas: #f0e5f9;        /* fond clair agréable */
+  --text: #2c1d3f;         /* texte plus doux */
   --white: #ffffff;
 
-  --bg-grad: linear-gradient(135deg, var(--lilas) 0%, var(--rose) 100%);
+  --bg-grad: linear-gradient(135deg, #f0e5f9 0%, #f9d0dc 100%);
   --card-bg: #ffffff;
-  --muted: #4b256c;
+  --muted: #5c3a78;
 }
 
 /* ===== Mode sombre (noir violet) ===== */
 :root.dark {
-  --rose: #ff9acb;
-  --rose-dark: #ff6fa8;
-  --violet: #caa5f5;
-  --lilas: #eacff8;
-  --text: #f5eaff;
-  --white: #1a1324;
+  --rose: #e76a93;         /* rose foncé doux */
+  --rose-dark: #c45d82;    /* rose chaud plus naturel */
+  --violet: #a18aff;       /* lavande froide */
+  --lilas: #cbb8f5;        /* accent secondaire doux */
+  --text: #e6e6ef;         /* gris clair pour le texte */
+  --white: #121015;        /* fond de base noir adouci */
 
-  --bg-grad: radial-gradient(1200px 800px at 50% -10%, #2b1b3b 0%, #160d22 45%, #0c0814 100%);
-  --card-bg: #1a1324;
-  --muted: #cdb7f3;
+  /* 🌌 fond dégradé violet-noir élégant */
+  --bg-grad: radial-gradient(1200px 800px at 50% -10%, #1b1426 0%, #14101e 50%, #0d0a14 100%);
+  
+  --card-bg: #1a1622;      /* cartes légèrement éclaircies */
+  --muted: #b6a6d9;        /* texte secondaire doux */
 }
 
 /*  ===== Reset / Base ===== */
@@ -343,35 +345,99 @@ html {
 
 /* ===== PROJECTS ===== */
 .projects {
-  background: linear-gradient(135deg, #fad0c4 0%, #eaccf8 100%);
+  background: linear-gradient(135deg, #f9d0dc 0%, #f0e5f9 100%);
+  color: var(--text);
+  padding: 80px 20px;
+  text-align: center;
+  position: relative;
+  transition: background 0.6s ease;
 }
-:root.dark .projects { background: transparent; }
+:root.dark .projects {
+  background: radial-gradient(circle at top, #1b1426, #120e1b 80%);
+  color: var(--text);
+}
+
+.projects::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--rose), transparent);
+  opacity: 0.4;
+}
+
+.section-title {
+  font-size: 2.2rem;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.section-subtitle {
+  color: var(--text);
+  opacity: 0.8;
+  margin-bottom: 50px;
+}
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
   gap: 30px;
-  margin-top: 2rem;
 }
+
 .project-card {
+  position: relative;
   background: var(--card-bg);
-  border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-  padding: 1.5rem;
+  border: 1px solid rgba(231, 106, 147, 0.25);
+  border-radius: 18px;
+  padding: 1.8rem;
+  box-shadow: 0 5px 20px rgba(231, 106, 147, 0.15);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 25px rgba(231, 106, 147, 0.3);
+}
+
+.project-card h3 {
+  color: var(--rose-dark);
+  margin-bottom: 0.7rem;
+}
+
+.project-card p {
+  color: var(--text);
+  margin-bottom: 1.5rem;
+}
+
+/* === Boutons GitHub cohérents avec ta palette === */
+.btn-outline {
+  position: relative;
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  border: 2px solid var(--rose-dark);
+  border-radius: 10px;
+  color: var(--rose-dark);
+  text-decoration: none;
+  font-weight: 600;
   transition: 0.3s;
-  display: flex;
-  flex-direction: column;
+  z-index: 1;
 }
-.project-card:hover { transform: translateY(-6px); }
-.project-card img {
-  border-radius: 15px;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  margin-bottom: 1rem;
+
+.btn-outline:hover {
+  background: var(--rose-dark);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(231, 106, 147, 0.5);
 }
-.project-card h3 { color: var(--muted); margin-bottom: 0.5rem; }
-.project-card p { color: var(--text); margin-bottom: 1rem; flex-grow: 1; }
+
+.btn-outline.disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
 
 /* ===== CONTACT ===== */
 .contact {

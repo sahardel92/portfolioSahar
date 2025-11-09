@@ -1,7 +1,7 @@
-// 🪄 had l-code kaytsenna l page kamla tload bach ybda l scripts
+// had l-code kaytsenna l page kamla tload bach ybda l scripts
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* MENU BURGER (téléphone)
+  /* 🍔 MENU BURGER (téléphone)
      kay7ell / ysedd menu f mobile, mais f PC kayb9a horizontal normal */
   const burger = document.querySelector(".burger");
   const nav = document.querySelector(".nav-links");
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* 👀 Intersection Observer
+  /*  Intersection Observer
      kaydir animation dyal fadeUp f sections kifach tban b douceur */
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // kol element 3ndo .reveal kaykhdem 3lih animation
   document.querySelectorAll(".reveal").forEach(el => io.observe(el));
 
-  /* 💌 FORM DIAL CONTACT
+  /*  FORM DIAL CONTACT
      menni user yclick 3la Send kaybda had event */
   const form = document.querySelector(".contact-form");
   const notice = document.getElementById("contact-notice");
@@ -49,34 +49,34 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* ✨ Animation dyal l-ism "Sahar Dellouz"
+  /*  Animation dyal l-ism "Sahar Dellouz"
      juste test f console bach n3rf event */
   const name = document.getElementById("name");
   if (name) {
     name.addEventListener("mouseover", () => {
-      console.log("✨ Hovered on Sahar's name");
+      console.log(" Hovered on Sahar's name");
     });
   }
 });
 
 
-// 🌙 ===== DARK / LIGHT MODE TOGGLE =====
+//  ===== DARK / LIGHT MODE TOGGLE =====
 (() => {
   const root = document.documentElement; // <html> li kaymchi fih class "dark"
   const toggleBtn = document.getElementById('theme-toggle');
 
-  // 🔁 ki ychouf wach kayn mode enregistré f localStorage
+  //  ki ychouf wach kayn mode enregistré f localStorage
   const saved = localStorage.getItem('theme');
   if (saved === 'dark') root.classList.add('dark');
 
-  // 🏷️ fonction katbaddel label f bouton (🌙 ⇄ ☀️)
+  //  fonction katbaddel label f bouton 
   const syncLabel = () => {
     const isDark = root.classList.contains('dark');
-    if (toggleBtn) toggleBtn.textContent = isDark ? '☀️ Light' : '🌙 Dark';
+    if (toggleBtn) toggleBtn.textContent = isDark ? 'Light' : ' Dark';
   };
   syncLabel();
 
-  // 👇 menni user yclick 3la bouton dyal mode
+  //  menni user yclick 3la bouton dyal mode
   if (toggleBtn) {
     toggleBtn.addEventListener('click', () => {
       root.classList.toggle('dark'); // ybaddel classe "dark" f <html>
@@ -84,30 +84,30 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem('theme', isDark ? 'dark' : 'light'); // y7fdd choix user
       syncLabel();
 
-      // 🌠 etoiles ki yfallaw f mode sombre
+      //  etoiles ki yfallaw f mode sombre
       if (isDark) startStars(); 
       else stopStars();
     });
   }
 
-  // 🛫 ila kan deja mode sombre, ybda l etoiles automatiquement
+  //  ila kan deja mode sombre, ybda l etoiles automatiquement
   if (root.classList.contains('dark')) startStars();
 })();
 
 
-// 🌠 ===== ANIMATION DIAL LES ÉTOILES =====
+//  ===== ANIMATION DIAL LES ÉTOILES =====
 let starsRAF = null;
 let starsCtx = null;
 let stars = [];
 let canvasEl = null;
 
-// 💫 fonction li katbda l animation
+//  fonction li katbda l animation
 function startStars(){
   canvasEl = document.getElementById('stars-canvas');
   if (!canvasEl) return;
   starsCtx = canvasEl.getContext('2d');
 
-  // 🌌 taille canvas selon taille dial window
+  //  taille canvas selon taille dial window
   const resize = () => {
     canvasEl.width = window.innerWidth;
     canvasEl.height = window.innerHeight;
@@ -115,11 +115,11 @@ function startStars(){
   resize();
   window.addEventListener('resize', resize);
 
-  // 🧊 n7ddo nombre dyal etoiles selon surface écran
+  //  n7ddo nombre dyal etoiles selon surface écran
   const STAR_COUNT = Math.min(180, Math.floor((window.innerWidth*window.innerHeight)/8000));
   stars = Array.from({length: STAR_COUNT}, () => newStar());
 
-  // 🎬 l'animation li katjri kol frame
+  //  l'animation li katjri kol frame
   const tick = () => {
     drawStars();
     updateStars();
@@ -128,7 +128,7 @@ function startStars(){
   if (!starsRAF) tick();
 }
 
-// 🛑 had fonction katwa9ef animation
+//  had fonction katwa9ef animation
 function stopStars(){
   if (starsRAF) cancelAnimationFrame(starsRAF);
   starsRAF = null;
@@ -137,7 +137,7 @@ function stopStars(){
   }
 }
 
-// ✨ création d'une étoile jdida
+//  création d'une étoile jdida
 function newStar(){
   const speed = Math.random()*0.8 + 0.3; // vitesse dyal chute
   return {
@@ -150,14 +150,14 @@ function newStar(){
   };
 }
 
-// 🔁 mise à jour dyal positions
+//  mise à jour dyal positions
 function updateStars(){
   const w = window.innerWidth, h = window.innerHeight;
   for (let s of stars){
     s.x += s.vx;
     s.y += s.vy;
 
-    // 💫 scintillement
+    //  scintillement
     s.alpha += (Math.random()-0.5)*0.04;
     if (s.alpha < 0.2) s.alpha = 0.2;
     if (s.alpha > 0.9) s.alpha = 0.9;
@@ -173,20 +173,20 @@ function updateStars(){
   }
 }
 
-// 🎨 rasm dyal les étoiles
+//  rasm dyal les étoiles
 function drawStars(){
   if (!starsCtx || !canvasEl) return;
   const ctx = starsCtx;
   ctx.clearRect(0,0,canvasEl.width,canvasEl.height);
 
-  // 🌌 halo violet doux f l’arrière-plan
+  // halo violet doux f l’arrière-plan
   const g = ctx.createRadialGradient(canvasEl.width/2, -100, 0, canvasEl.width/2, -100, canvasEl.height*1.2);
   g.addColorStop(0, 'rgba(202,165,245,0.15)');
   g.addColorStop(1, 'rgba(12,8,20,0)');
   ctx.fillStyle = g;
   ctx.fillRect(0,0,canvasEl.width,canvasEl.height);
 
-  // 🌟 rasm kol étoile
+  // rasm kol étoile
   for (let s of stars){
     ctx.beginPath();
     ctx.globalAlpha = s.alpha;
@@ -207,4 +207,6 @@ const io = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 
 document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+startStars();
 
